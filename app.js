@@ -9,8 +9,7 @@ app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redi
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
 
-//serving static sites
-app.use(express.static('public'));
+
 
 app.set('view engine', 'ejs');
 /**
@@ -21,10 +20,13 @@ app.set('view engine', 'ejs');
 require('./routes/admin')(app);
 //handles the login pages - login, logout
 require('./routes/login')(app);
-//handles the shopping - products, details, checkout
-//require('./routes/products')(app);
 //handles the password reset pages - forgotten passwd, setting new
-//require('./routes/password')(app);
+require('./routes/password')(app);
+//handles the shopping - products, details, checkout
+require('./routes/products')(app);
+
+//serving static sites
+app.use(express.static('public'));
 
 app.listen(3000,function(){
     console.log('server listen on port 3000');
