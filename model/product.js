@@ -8,7 +8,9 @@ function createProduct(index, id){
         price: index*20 % 60 + 10,
         color: 'Red',
         type: 'dummy product',
-        size: [10,20,30]
+        size: [10,20,30],
+        quantity: 1,
+        image: ''
     }
 }
 
@@ -32,6 +34,18 @@ function getProduct(id){
     }
 }
 
+function push(product){
+    for(var i=0;i<products.length;i++){
+        if(products[i].id==product.id){
+            products[i]=product;
+            return ;
+        }
+    }
+
+    products.push(product);
+
+}
+
 var products = function(){
     var products=[];
     for(var i=0;i<10;i++){
@@ -45,5 +59,6 @@ module.exports ={
     products: products,
     createProduct: createProduct,
     deleteProduct: deleteProduct,
-    getProduct: getProduct
+    getProduct: getProduct,
+    push: push
 } 

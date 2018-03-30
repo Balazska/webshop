@@ -70,7 +70,7 @@
                   <% cart.items.forEach(function(item){ %>
                       <tr>
                         <th scope="row"><%= item.product.name %></th>
-                        <td><img class="img-fluid mini-image" src="https://picsum.photos/400/300/?random"></td>
+                        <td><img class="img-fluid mini-image" src="<%= product.image %>"></td>
                         <td><%= item.color %></td>
                         <td><%= item.size %></td>
                         <td><%= item.quantity %></td>

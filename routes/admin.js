@@ -6,6 +6,7 @@ var updateProductMW = require('../middleware/product/updateProduct');
 var getAllProductsMW = require('../middleware/product/getProductList');
 var parseProductFromBodyMW = require('../middleware/product/parseProductFromBody');
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
+var uploadImageMW = require('../middleware/product/uploadImage');
 var userModel = {};
 
 module.exports = function (app) {
@@ -44,6 +45,7 @@ module.exports = function (app) {
     //only for post requests
     app.post('/admin/edit/:id',
         writeToConsoleMW("/admin/edit"),
+        uploadImageMW(objectRepository),
         parseProductFromBodyMW(objectRepository),
         updateProductMW(objectRepository),
         function(req , res){

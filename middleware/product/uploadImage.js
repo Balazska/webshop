@@ -8,7 +8,13 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         console.log("create product from req body");
         console.log(req.body);
-        return next();
+        console.log(req.files.image);
+        req.files.image.mv('./public/images/products/'+req.files.image.name,function(err){
+            console.log(err);
+            res.locals.imageUrl = '/images/products/'+req.files.image.name;
+            next();
+        })
+        
     };
 
 };

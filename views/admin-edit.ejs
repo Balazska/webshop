@@ -59,7 +59,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                                 <label for="productname">Name</label>
-                                <input name="productname" type="text" class="form-control" id="productname" placeholder="" value="<%= product.name %>">
+                                <input name="name" type="text" class="form-control" id="productname" placeholder="" value="<%= product.name %>">
                         </div>
                         <div class="form-group">
                                 <label for="description">Description</label>
@@ -68,7 +68,7 @@
                         <div class="form-group">
                                 <label for="image">Image</label>
                                 <span class="form-control">
-                                    <img class="img-fluid mini-image" src="https://picsum.photos/400/300/?random">
+                                    <img class="img-fluid mini-image" src="<%= product.image %>">
                                 </span>
                         </div>
                         <div class="form-group">
