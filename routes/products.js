@@ -8,11 +8,15 @@ var createItemMW = require('../middleware/item/createItem');
 var deleteItemMW = require('../middleware/item/deleteItemFromCart');
 var sendOrderEmailMW = require('../middleware/user/sendOrderEmail');
 var parseUserFromBodyMW = require('../middleware/user/parseUserFromBody');
+var getCartMW = require('../middleware/item/getCart');
+var createCartMW = require('../middleware/item/createCart');
 var userModel = {};
+var products = require('../model/product').products;
 
 module.exports = function (app) {
     var objectRepository = {
-        userModel: userModel
+        userModel: userModel,
+        products: app.products
     };
 
 
@@ -21,13 +25,13 @@ module.exports = function (app) {
      * Edit product by id
      */
     //only for get requests
-    app.get('/details',
+    app.get('/details/:id',
         writeToConsoleMW("/details"),
         getProductMW(objectRepository),
         renderMW(objectRepository,'details')
     );
     //only for post requests
-    app.post('/details',
+    app.post('/details/:id',
         writeToConsoleMW("/details"),
         getProductMW(objectRepository),
         createItemMW(objectRepository),
@@ -40,9 +44,11 @@ module.exports = function (app) {
     /**
      * Checkout pages
      */
-    app.get('/checkout/delete',
+    app.get('/checkout/delete/:id',
         writeToConsoleMW('/checkout/delete'),
+        createCartMW(),
         deleteItemMW(objectRepository),
+        getCartMW(),
         function(req , res){
             res.redirect("/checkout");
         }
@@ -50,6 +56,8 @@ module.exports = function (app) {
 
     app.get('/checkout',
         writeToConsoleMW("/checkout"),
+        createCartMW(),
+        getCartMW(),
         renderMW(objectRepository, 'checkout')
     );
     app.post('/checkout',

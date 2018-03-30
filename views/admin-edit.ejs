@@ -53,17 +53,17 @@
 
     <main role="main">
         <div class="container py-5">
-            <h2>Name of the product</h2>
-            <form method="POST">
+            <h2><%= product.name %></h2>
+            <form method="POST" encType="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                                <label for="productname">Product Name</label>
-                                <input type="text" class="form-control" id="productname" placeholder="" value="Name of the product">
+                                <label for="productname">Name</label>
+                                <input name="productname" type="text" class="form-control" id="productname" placeholder="" value="<%= product.name %>">
                         </div>
                         <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" id="description" rows="3">Description of the product</textarea>
+                                <textarea name="description" class="form-control" id="description" rows="3"><%= product.description %></textarea>
                         </div>
                         <div class="form-group">
                                 <label for="image">Image</label>
@@ -73,37 +73,37 @@
                         </div>
                         <div class="form-group">
                                 <label for="image">New Image</label>
-                                <input type="file" class="form-control-file" id="image">
+                                <input name="image" type="file" class="form-control-file" id="image">
                         </div>
                         <div class="form-group">
                             <label for="size">Size</label>
-                            <select multiple class="form-control" id="size">
-                                <option selected>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                                <option>40</option>
-                                <option>50</option>
+                            <select name="size" multiple class="form-control" id="size">
+                                <option <%= product.size.includes(10) ? 'selected':'' %> >10</option>
+                                <option <%= product.size.includes(20) ? 'selected':'' %>>20</option>
+                                <option <%= product.size.includes(30) ? 'selected':'' %>>30</option>
+                                <option <%= product.size.includes(40) ? 'selected':'' %>>40</option>
+                                <option <%= product.size.includes(50) ? 'selected':'' %>>50</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="color">Color</label>
-                            <select multiple class="form-control" id="color">
-                                <option>Red</option>
-                                <option>Orange</option>
-                                <option>Black</option>
-                                <option>White</option>
-                                <option>Green</option>
+                            <select name="color" multiple class="form-control" id="color">
+                                <option <%= product.color.includes('Red') ? 'selected':'' %>>Red</option>
+                                <option <%= product.color.includes('Orange') ? 'selected':'' %>>Orange</option>
+                                <option <%= product.color.includes('Black') ? 'selected':'' %>>Black</option>
+                                <option <%= product.color.includes('White') ? 'selected':'' %>>White</option>
+                                <option <%= product.color.includes('Green') ? 'selected':'' %>>Green</option>
                             </select>
                         </div>
                         <div class="form-group">
                                 <label for="price">Price</label>
-                                <input type="number" class="form-control" id="price" placeholder="" value="100">
+                                <input name="price" type="number" class="form-control" id="price" placeholder="" value="<%= product.price %>">
                         </div>
                         <div class="form-group">
                                 <label for="quantity">Quantity</label>
-                                <input type="number" class="form-control" id="quantity" placeholder="">
+                                <input name="quantity" type="number" class="form-control" id="quantity" placeholder="">
                         </div>
                     </div>
                 </div>

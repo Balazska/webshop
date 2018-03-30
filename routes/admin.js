@@ -10,7 +10,8 @@ var userModel = {};
 
 module.exports = function (app) {
     var objectRepository = {
-        userModel: userModel
+        userModel: userModel,
+        products: app.products
     };
 
     app.use('/admin',
@@ -22,7 +23,7 @@ module.exports = function (app) {
     /**
      * Delete product by id
      */
-    app.get('/admin/delete',
+    app.get('/admin/delete/:id',
         writeToConsoleMW("/admin/delete"),
         getProductMW(objectRepository),
         deleteProductMW(objectRepository),
@@ -35,13 +36,13 @@ module.exports = function (app) {
      * Edit product by id
      */
     //only for get requests
-    app.get('/admin/edit',
+    app.get('/admin/edit/:id',
         writeToConsoleMW("/admin/edit"),
         getProductMW(objectRepository),
         renderMW(objectRepository,'admin-edit')
     );
     //only for post requests
-    app.post('/admin/edit',
+    app.post('/admin/edit/:id',
         writeToConsoleMW("/admin/edit"),
         parseProductFromBodyMW(objectRepository),
         updateProductMW(objectRepository),

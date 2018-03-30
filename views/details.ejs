@@ -63,39 +63,40 @@
                     <thead>
                       <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">product name</th>
+                        <th scope="col"><%= product.name %></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">Description</th>
-                        <td>This is the description of the product</td>
+                        <td><%= product.description %></td>
                       </tr>
                       <tr>
                         <th scope="row">Size</th>
                         <td>
                           <select class="custom-select">
                             <option selected>Choose...</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
+                            <% product.size.forEach(function(size){ %>
+                              <option><%= size %></option>
+                            <% }) %>
                           </select>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row">Color</th>
                         <td>
-                          <select class="custom-select">
+                          <%= product.color %>
+                          <!--select class="custom-select">
                             <option selected>Choose...</option>
                             <option value="black">black</option>
                             <option value="white">white</option>
                             <option value="orange">orange</option>
-                          </select>
+                          </select-->
                         </td>
                       </tr>
                       <tr>
                         <th scope="row">Price</th>
-                        <td>100$</td>
+                        <td><%= product.price %>$</td>
                       </tr>
                       <tr>
                         <th scope="row">Quantity</th>

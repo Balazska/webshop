@@ -55,52 +55,32 @@
         <div class="container">
 
           <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    Product2
-                </div>
-                <img class="card-img-top" src="https://picsum.photos/400/300/?random" alt="Card image cap">
-                <div class="card-body">
-                  <!-- Details-->
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      <p class="card-text">Description of the product2</p>
-                    </li>
-                    <li class="list-group-item">
-                        Price: 100$
-                      </li>
-                  </ul>
-                  <div class="d-flex justify-content-end align-items-center">
-                    <div class="btn-group">
-                      <a href="/details" class="btn btn-md btn-info">Details</a>
+            <% products.forEach(function(product){ %>
+              <div class="col-md-4">
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <%= product.name%>
+                    </div>
+                    <img class="card-img-top" src="https://picsum.photos/400/300/?random" alt="Card image cap">
+                    <div class="card-body">
+                      <!-- Details-->
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          <p class="card-text"><%= product.description%></p>
+                        </li>
+                        <li class="list-group-item">
+                            Price: <%= product.price%>
+                          </li>
+                      </ul>
+                      <div class="d-flex justify-content-end align-items-center">
+                        <div class="btn-group">
+                          <a href="/details/<%= product.id%>" class="btn btn-md btn-info">Details</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                  <div class="card-header">
-                      Product1
-                  </div>
-                  <img class="card-img-top" src="https://picsum.photos/400/300/?random" alt="Card image cap">
-                  <div class="card-body">
-                    <!-- Details-->
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                        <p class="card-text">Description of the product2</p>
-                      </li>
-                      <li class="list-group-item">
-                          Price: 100$
-                        </li>
-                    </ul>
-                  <div class="d-flex justify-content-end align-items-center">
-                    <a href="/details" class="btn btn-md btn-info">Details</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <% }) %>
             
           </div>
         </div>

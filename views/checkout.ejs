@@ -67,29 +67,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">First Product</th>
-                    <td><img class="img-fluid mini-image" src="https://picsum.photos/400/300/?random"></td>
-                    <td>black</td>
-                    <td>10</td>
-                    <td>1</td>
-                    <td>100$</td>
-                    <td>100$</td>
-                    <td><a class="btn btn-danger" href="/delete">X</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Second Product</th>
-                    <td><img class="img-fluid mini-image" src="https://picsum.photos/400/300/?random"></td>
-                    <td>black</td>
-                    <td>20</td>
-                    <td>2</td>
-                    <td>100$</td>
-                    <td>200$</td>
-                    <td><a class="btn btn-danger" href="/delete">X</a></td>
-                  </tr>
+                  <% cart.items.forEach(function(item){ %>
+                      <tr>
+                        <th scope="row"><%= item.product.name %></th>
+                        <td><img class="img-fluid mini-image" src="https://picsum.photos/400/300/?random"></td>
+                        <td><%= item.color %></td>
+                        <td><%= item.size %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.product.price %></td>
+                        <td><%= item.sum %></td>
+                        <td><a class="btn btn-danger" href="/checkout/delete/<%= item.id %>">X</a></td>
+                      </tr>
+                  <% }) %>
                 </tbody>
               </table>  
-              <h4>Total: 300$</h4>
+              <h4>Total: <%= cart.sum %>$</h4>
               <form method="POST">  
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
