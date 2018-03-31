@@ -9,12 +9,17 @@ module.exports = function (objectrepository) {
         console.log("create product from req body");
         console.log(req.body);
 
-        var product = req.body; //ha nincs size vagy csak egy van megadva az nem jo 
-        var products = objectrepository.products.products;
-        if(!req.params.id)
-            product.id = products[products.length-1].id ++ ;
-        else 
-            product.id= req.params.id;
+        var body = req.body; //ha nincs size vagy csak egy van megadva az nem jo 
+
+        var product = {};
+
+        product.name = body.name;
+        product.size = [];
+        product.size = product.size.concat(body.size);
+        product.description = body.description;
+        product.color = body.color;
+        product.price = body.price;
+        product.quantity = body.quantity;
         product.image = res.locals.imageUrl;
 
         res.locals.product= product;

@@ -10,7 +10,7 @@ function createProduct(index, id){
         type: 'dummy product',
         size: [10,20,30],
         quantity: 1,
-        image: ''
+        image: '/images/products/bottles.png'
     }
 }
 

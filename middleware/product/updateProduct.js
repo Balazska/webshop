@@ -7,7 +7,15 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
         console.log("update a product");
-        objectrepository.products.push(res.locals.product);
+
+        var products = objectrepository.products.products;
+        var product = res.locals.product;
+        if(!req.params.id)
+            product.id = products[products.length-1].id ++ ;
+        else 
+            product.id= req.params.id;
+
+        objectrepository.products.push(product);
         
         return next();
     };
