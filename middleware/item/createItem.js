@@ -8,10 +8,10 @@ module.exports = function (objectRepository) {
         if(res.locals.product){
             var item = {
                 product: res.locals.product,
-                color: 'Red',
-                size: 10,
-                quantity: 1,
-                sum: 1*res.locals.price,
+                color: res.locals.product.color,
+                size: req.body.size,
+                quantity: req.body.quantity,
+                sum: req.body.quantity*res.locals.product.price,
             }
             res.locals.item = item;
         }

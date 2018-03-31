@@ -74,7 +74,7 @@
                       <tr>
                         <th scope="row">Size</th>
                         <td>
-                          <select class="custom-select">
+                          <select name="size" class="custom-select">
                             <option selected>Choose...</option>
                             <% product.size.forEach(function(size){ %>
                               <option><%= size %></option>
@@ -101,7 +101,7 @@
                       <tr>
                         <th scope="row">Quantity</th>
                         <td>
-                          <input type="number" class="form-control" aria-describedby="" placeholder="">
+                          <input name="quantity" type="number" class="form-control" aria-describedby="" placeholder="">
                         </td>
                       </tr>
                     </tbody>

@@ -33,9 +33,11 @@ module.exports = function (app) {
     //only for post requests
     app.post('/details/:id',
         writeToConsoleMW("/details"),
+        createCartMW(objectRepository),
         getProductMW(objectRepository),
         createItemMW(objectRepository),
         addItemToCartMW(objectRepository),
+        getCartMW(objectRepository),
         function(req , res){
             res.redirect("/");
         }

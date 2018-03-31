@@ -1,5 +1,5 @@
 /**
- * Add an item to the cart
+ * If the cart not excists create one
  */
 module.exports = function (objectRepository) {
 

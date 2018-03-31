@@ -9,6 +9,7 @@ module.exports = function (objectrepository) {
         console.log("get a product");
         var id=req.params.id;
         res.locals.product = objectrepository.products.getProduct(id);
+        console.log(res.locals.product);
         return next();
     };
 
