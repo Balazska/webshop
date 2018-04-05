@@ -12,19 +12,23 @@ module.exports = function (objectrepository) {
         var body = req.body; //ha nincs size vagy csak egy van megadva az nem jo 
 
         var product = {};
+        if(!body.name || !body.size || !body.description || !body.color || !body.price || !body.quantity){
+            res.status(400).end("Some fields are missing");
+        } else {
+            product.name = body.name;
+            product.size = [];
+            product.size = product.size.concat(body.size);
+            product.description = body.description;
+            product.color = body.color;
+            product.price = body.price;
+            product.quantity = body.quantity;
+            product.image = res.locals.imageUrl ;
 
-        product.name = body.name;
-        product.size = [];
-        product.size = product.size.concat(body.size);
-        product.description = body.description;
-        product.color = body.color;
-        product.price = body.price;
-        product.quantity = body.quantity;
-        product.image = res.locals.imageUrl;
+            res.locals.parsedProduct= product;
 
-        res.locals.product= product;
-
-        return next();
+            return next();
+        }
+        
     };
 
 };

@@ -48,6 +48,7 @@ module.exports = function (app) {
         writeToConsoleMW("/admin/edit"),
         uploadImageMW(objectRepository),
         parseProductFromBodyMW(objectRepository),
+        getProductMW(objectRepository),
         updateProductMW(objectRepository),
         function(req , res){
             res.redirect("/admin");
@@ -65,6 +66,7 @@ module.exports = function (app) {
         writeToConsoleMW("/admin/new"),
         uploadImageMW(objectRepository),
         parseProductFromBodyMW(objectRepository),
+        getProductMW(objectRepository),
         updateProductMW(objectRepository),
         function(req , res){
             res.redirect("/admin");

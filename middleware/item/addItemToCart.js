@@ -1,5 +1,7 @@
 /**
  * Add an item to the cart
+ * 
+ * Reqiured: res.locals.item
  */
 module.exports = function (objectRepository) {
 

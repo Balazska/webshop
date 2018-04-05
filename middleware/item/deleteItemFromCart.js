@@ -1,5 +1,7 @@
 /**
  * Delete an item from the cart
+ * 
+ * Required: request.session.cart 
  */
 module.exports = function (objectRepository) {
 
