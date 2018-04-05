@@ -8,6 +8,7 @@ var parseProductFromBodyMW = require('../middleware/product/parseProductFromBody
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
 var uploadImageMW = require('../middleware/product/uploadImage');
 var userModel = {};
+var passport = require("passport");
 
 module.exports = function (app) {
     var objectRepository = {
