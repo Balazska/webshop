@@ -11,6 +11,7 @@ var fileUpload = require('express-fileupload');
 
 //store dummy products:
 app.products = require('./model/product');
+app.user = require('./model/user');
 
 //set the session options
 app.use(session({
