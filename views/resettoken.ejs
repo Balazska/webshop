@@ -4,18 +4,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Signin Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="/js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <% include partials/head %>
 
     <!-- Custom styles for this template -->
     <link href="/mycss/resettoken.css" rel="stylesheet">
@@ -26,12 +15,16 @@
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Set new password</h1>
       <label for="password" class="sr-only">Password</label>
-      <input type="password" id="password" class="form-control" placeholder="Password" required autofocus>
+      <input name="password" type="password" id="password" class="form-control" placeholder="Password" required autofocus>
       <label for="passwordAgain" class="sr-only">Password again</label>
-      <input type="password" id="passwordAgain" class="form-control" placeholder="Password Again" required>
+      <input name="passwordAgain" type="password" id="passwordAgain" class="form-control" placeholder="Password Again" required>
 
       <!--button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button-->
       <button type="submit" class="btn btn-primary btn-lg btn-block" role="button">Set my new password</button>
     </form>
+
+    <footer>
+      <% include partials/footer %>
+    </footer>
   </body>
 </html>

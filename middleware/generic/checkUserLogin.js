@@ -1,5 +1,7 @@
 /**
  * if the user is valid, redirect to admin
+ * 
+ * !!!!!!!!!!!!!USER passport.authenticate instead
  */
 module.exports = function (objectRepository) {
 

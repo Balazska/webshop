@@ -5,8 +5,8 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        console.log("user logged out");
-        return next();
+        req.logout();
+        res.redirect('/login');
     };
 
 };

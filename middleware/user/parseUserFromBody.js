@@ -4,8 +4,14 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        console.log("Parse user from the req body");
-        return next();
+        if(req.body.username && req.body.email){
+            res.locals.parsedUser = {
+                username: req.body.username,
+                email: req.body.email
+            };
+            return next();
+        }
+        res.redirect("/forgottenpassword");
     };
 
 };

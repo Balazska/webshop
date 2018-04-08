@@ -31,6 +31,7 @@ function getProduct(id){
                 return products[i];
             }
         }
+        return null;
     }
 }
 

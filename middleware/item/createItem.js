@@ -1,11 +1,16 @@
 /**
  * create an item
+ * 
+ * Required: res.locals.product
  */
 module.exports = function (objectRepository) {
 
     return function (req, res, next) {
         console.log("create an item");
-        if(res.locals.product){
+        //check the from data
+        if(!req.body.size || !req.body.quantity){
+            res.status(400).end('Bad Request, form fields are missing');
+        } else if(res.locals.product){
             var item = {
                 product: res.locals.product,
                 color: res.locals.product.color,
@@ -14,9 +19,10 @@ module.exports = function (objectRepository) {
                 sum: req.body.quantity*res.locals.product.price,
             }
             res.locals.item = item;
+            return next();
         }
         
-        return next();
+        
     };
 
 };

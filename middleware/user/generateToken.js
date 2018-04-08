@@ -1,11 +1,18 @@
 /**
  * Generate a token for a user
  */
+var crypto = require('crypto');
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
         console.log("Generate a token for a user");
-        return next();
+        crypto.randomBytes(20, function(err, buf) {
+            var token = buf.toString('hex');
+            res.locals.token = token;
+            console.log(token);
+            return next();
+          });
+        
     };
 
 };

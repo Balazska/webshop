@@ -1,5 +1,6 @@
 /**
  * copy cart to res.locals.cart
+ * if there is no cart, create one
  */
 module.exports = function (objectRepository) {
 

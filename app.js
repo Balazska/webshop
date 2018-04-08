@@ -8,10 +8,59 @@ var bodyParser = require('body-parser');
 
 //create a form parser with file upload feature
 var fileUpload = require('express-fileupload');
+//these are for the authentication
+var passport = require('passport')
+var bcrypt = require('bcrypt')
+var LocalStrategy = require('passport-local').Strategy
+
+//email service
+var nodemailer = require('nodemailer');
+
+
 
 //store dummy products:
 app.products = require('./model/product');
+//store dummy user
 app.user = require('./model/user');
+
+//create a password
+var password = "admin"
+bcrypt.hash(password, 10).then(function(hash) {
+  password = hash;
+  app.user.password = password;
+});
+
+//set up passport local strategy
+passport.use(new LocalStrategy(
+  (username, password, done) => {
+    console.log(username + ' ' + password);
+       // User not found
+       if (!app.user) {
+         return done(null, false)
+       }
+ 
+       // Always use hashed passwords and fixed time comparison
+       bcrypt.compare(password, app.user.password, (err, isValid) => {
+         console.log(isValid);
+         if (err) {
+           return done(err)
+         }
+         if (!isValid) {
+           return done(null, false)
+         }
+         return done(null, app.user)
+       })
+     })
+ )
+
+passport.serializeUser(function (user, done) {
+  console.log(user);
+  done(null, user);
+})
+
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+})
 
 //set the session options
 app.use(session({
@@ -22,7 +71,10 @@ app.use(session({
     resave: true,
     saveUninitialized: false
   }));
+app.use(passport.initialize());
+app.use(passport.session());
 
+  
 //set up body parser
 // for parsing application/json
 app.use(bodyParser.json());

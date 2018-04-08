@@ -7,11 +7,13 @@ var generateTokenMW = require('../middleware/user/generateToken');
 var sendTokenEmailMW = require('../middleware/user/sendTokenEmail');
 var renderMW = require('../middleware/generic/render');
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
+var addTokenToUserMW = require('../middleware/user/addTokenToUser');
 var userModel = {};
 
 module.exports = function (app) {
     var objectRepository = {
-        userModel: userModel
+        userModel: userModel,
+        user: app.user
     };
 
     /** 
@@ -27,6 +29,7 @@ module.exports = function (app) {
         getUserMW(objectRepository),
         verifyUserMW(objectRepository,['username','email'],'forgottenpassword'),
         generateTokenMW(objectRepository),
+        addTokenToUserMW(objectRepository),
         sendTokenEmailMW(objectRepository),
         function(req, res, next){
             res.redirect('/login')
@@ -35,15 +38,15 @@ module.exports = function (app) {
     /**
      * resettoken page
      */
-    app.get('/resettoken',
+    app.get('/resettoken/:token',
         writeToConsoleMW('/resettoken'),
         renderMW(objectRepository, 'resettoken')
     );
-    app.post('/resettoken',
+    app.post('/resettoken/:token',
         writeToConsoleMW('/resettoken'),
-        getUserNameByTokenMW(),
-        getUserMW(),
-        setNewPasswordMW(),
+        getUserNameByTokenMW(objectRepository),
+        getUserMW(objectRepository),
+        setNewPasswordMW(objectRepository),
         function(req, res, next){
             res.redirect('/login')
         }

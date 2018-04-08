@@ -7,7 +7,7 @@ module.exports = function (objectRepository) {
         if(!req.session.cart){
             req.session.cart = {
                 items: [],
-                sum: 1000
+                sum: 0
             };
         } 
         return next();

@@ -4,20 +4,30 @@ var renderMW = require('../middleware/generic/render');
 var logoutMW = require('../middleware/generic/logout');
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
 var userModel = {};
+var passport = require('passport');
 
 module.exports = function (app) {
     var objectRepository = {
-        userModel: userModel
+        userModel: userModel,
+        user: app.user
     };
 
     /** 
      * Login page 
      * TODO: change the checkUserLoginMW to middlewares in user directory
     */
-    app.use('/login',
+    app.get('/login',
         writeToConsoleMW('/login'),
         inverseAuthMW(objectRepository),
-        checkUserLoginMW(objectRepository),
+        renderMW(objectRepository, 'login')
+    );
+    app.post('/login',
+        writeToConsoleMW('/login'),
+        inverseAuthMW(objectRepository),
+        passport.authenticate('local', {
+            successRedirect: '/admin',
+            failureRedirect: '/login'
+        }),
         renderMW(objectRepository, 'login')
     );
 
@@ -26,7 +36,6 @@ module.exports = function (app) {
      */
     app.get('/logout',
         writeToConsoleMW('/logout'),
-        logoutMW(objectRepository),
-        renderMW(objectRepository, 'login')
+        logoutMW(objectRepository)
     );
 }
