@@ -1,15 +1,20 @@
 /**
  * Set the username belongs to the given sec token
+ * if the token is expired we redirect to the login page
  */
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
         console.log("get username by sec token");
         var token = req.params.token;
-        if(objectrepository.user.token == token){
-            res.locals.parsedUser = objectrepository.user;
-        }
-        return next();
+        objectrepository.userModel.findOne({token : token}, function(err, user){
+            if(user.tokenExpires > Date.now()){
+                res.locals.parsedUser = user;
+                return next();
+            } else{
+                res.redirect('/login');
+            }
+        });
     };
 
 };

@@ -8,7 +8,7 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         console.log("Send a token email to the user");
                         // setup email data with unicode symbols
-           /* var mailOptions = {
+            var mailOptions = {
                 from: '"Fred Foo 👻" <foo@example.com>', // sender address
                 to: 'fodorbazsa@freemail.hu', // list of receivers
                 subject: 'Hello ✔', // Subject line
@@ -27,7 +27,7 @@ module.exports = function (objectrepository) {
                 // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
                 // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
             });        
-*/
+
         console.log('http://'+req.headers.host+"/resettoken/"+res.locals.token);
         
         return next();
