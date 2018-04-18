@@ -19,7 +19,7 @@ var nodemailer = require('nodemailer');
 
 
 //store dummy products:
-app.products = require('./model/product');
+require('./data_loader/products')
 //store dummy user
 
 //create a password

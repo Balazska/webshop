@@ -1,4 +1,4 @@
-//Product template
+//User model
 var Schema = require('mongoose').Schema;
 var db = require('../config/db');
 
