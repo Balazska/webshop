@@ -4,9 +4,17 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        objectrepository.user.token = res.locals.token;
-        objectrepository.user.tokenExpires = Date.now() + 3600000;
-        return next();
+        var user = res.locals.user;
+        user.token = res.locals.token;
+        user.tokenExpires = Date.now() + 30000;
+        console.log(Date.now());
+        user.save(function(err, user){
+            console.log('updated');
+            console.log(user);
+            res.locals.user = user;
+            return next();
+        })
+        
     };
 
 };

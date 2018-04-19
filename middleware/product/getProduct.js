@@ -1,5 +1,5 @@
 /**
- * get product by id, if the id is invalid send error
+ * get product by id
  * @param {*} objectrepository 
  */
 
@@ -8,14 +8,29 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         console.log("get a product");
         var id=req.params.id;
-        var product = objectrepository.products.getProduct(id);
-        if(product){
-            res.locals.product = product;
-            console.log(res.locals.product);
-            return next();
-        } else {
-            res.status(404).end("Product not found");
-        }
+        var Product = objectrepository.productModel;
+
+        Product.findOne({
+            _id:id
+        },function(err, product){
+            console.log(product);
+            if(err){
+                //error!!!
+                //res.locals.product = new Product();
+                //return next();
+                res.status(500).send("server delete error: "+err);
+            } else {
+                if(product == null){
+                    res.locals.product = new Product({});
+                    console.log("res product:----------------");
+                    console.log(res.locals.product);
+                } else {
+                    res.locals.product = product;
+                }
+                return next();
+            }
+            
+        });
 
     };
 

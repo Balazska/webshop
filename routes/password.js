@@ -8,7 +8,7 @@ var sendTokenEmailMW = require('../middleware/user/sendTokenEmail');
 var renderMW = require('../middleware/generic/render');
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
 var addTokenToUserMW = require('../middleware/user/addTokenToUser');
-var userModel = {};
+var userModel = require('../model/user');
 
 module.exports = function (app) {
     var objectRepository = {
@@ -40,6 +40,7 @@ module.exports = function (app) {
      */
     app.get('/resettoken/:token',
         writeToConsoleMW('/resettoken'),
+        getUserNameByTokenMW(objectRepository),
         renderMW(objectRepository, 'resettoken')
     );
     app.post('/resettoken/:token',

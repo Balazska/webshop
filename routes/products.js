@@ -11,12 +11,12 @@ var parseUserFromBodyMW = require('../middleware/user/parseUserFromBody');
 var getCartMW = require('../middleware/item/getCart');
 var createCartMW = require('../middleware/item/createCart');
 var userModel = {};
-var products = require('../model/product').products;
+var productModel = require('../model/product');
 
 module.exports = function (app) {
     var objectRepository = {
         userModel: userModel,
-        products: app.products
+        productModel: productModel
     };
 
 

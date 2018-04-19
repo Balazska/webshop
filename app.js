@@ -1,3 +1,6 @@
+//Start mongo
+//"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
+
 var express = require("express"); 
 //create app
 var app = express();
@@ -14,42 +17,40 @@ var bcrypt = require('bcrypt')
 var LocalStrategy = require('passport-local').Strategy
 
 //email service
-var nodemailer = require('nodemailer');
+//var nodemailer = require('nodemailer');
 
 
 
 //store dummy products:
-app.products = require('./model/product');
+require('./data_loader/products')
 //store dummy user
-app.user = require('./model/user');
 
 //create a password
-var password = "admin"
-bcrypt.hash(password, 10).then(function(hash) {
-  password = hash;
-  app.user.password = password;
-});
-
+require('./data_loader/add_admin');
+var User = require("./model/user");
 //set up passport local strategy
 passport.use(new LocalStrategy(
   (username, password, done) => {
     console.log(username + ' ' + password);
-       // User not found
-       if (!app.user) {
-         return done(null, false)
-       }
- 
-       // Always use hashed passwords and fixed time comparison
-       bcrypt.compare(password, app.user.password, (err, isValid) => {
-         console.log(isValid);
-         if (err) {
-           return done(err)
-         }
-         if (!isValid) {
-           return done(null, false)
-         }
-         return done(null, app.user)
-       })
+      // find the user
+      User.findOne({ username : username}, function(err, admin){
+          
+            if (!admin) {
+              return done(null, false)
+            }
+      
+            // Always use hashed passwords and fixed time comparison
+            bcrypt.compare(password, admin.password, (err, isValid) => {
+              console.log(isValid);
+              if (err) {
+                return done(err)
+              }
+              if (!isValid) {
+                return done(null, false)
+              }
+              return done(null, admin)
+            })
+      })
      })
  )
 
