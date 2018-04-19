@@ -4,7 +4,9 @@ this module will create the mail transporter
 // Require'ing module and setting default options
    
    var nodemailer = require('nodemailer');
-   
+   /*
+    create transporter using gmail service
+   */
    var transporter = nodemailer.createTransport(
        {
            service: "gmail",
@@ -22,5 +24,24 @@ this module will create the mail transporter
             //debug:true
         }
     );
+    /*
+    Override transport, write email to console
+    */
+    let transport = {
+        name: 'minimal',
+        version: '0.1.0',
+        send: (mail, callback) => {
+            let input = mail.message.createReadStream();
+            console.log("---------EMAIL-----------");
+            input.pipe(process.stdout);
+            
+            input.on('end', function () {
+                console.log("---------/EMAIL-----------");
+                callback(null, true);
+            });
+        }
+    };
+    
+    transporter = nodemailer.createTransport(transport);
 
 module.exports=transporter;

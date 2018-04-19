@@ -8,12 +8,13 @@ var parseProductFromBodyMW = require('../middleware/product/parseProductFromBody
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
 var uploadImageMW = require('../middleware/product/uploadImage');
 var userModel = require('../model/user');
+var productModel = require('../model/product');
 var passport = require("passport");
 
 module.exports = function (app) {
     var objectRepository = {
         userModel: userModel,
-        products: app.products
+        productModel: productModel
     };
 
     app.use('/admin',
@@ -27,7 +28,6 @@ module.exports = function (app) {
      */
     app.get('/admin/delete/:id',
         writeToConsoleMW("/admin/delete"),
-        getProductMW(objectRepository),
         deleteProductMW(objectRepository),
         function(req , res){
             res.redirect("/admin");
@@ -47,8 +47,8 @@ module.exports = function (app) {
     app.post('/admin/edit/:id',
         writeToConsoleMW("/admin/edit"),
         uploadImageMW(objectRepository),
-        parseProductFromBodyMW(objectRepository),
         getProductMW(objectRepository),
+        parseProductFromBodyMW(objectRepository),
         updateProductMW(objectRepository),
         function(req , res){
             res.redirect("/admin");
@@ -65,8 +65,8 @@ module.exports = function (app) {
     app.post('/admin/new',
         writeToConsoleMW("/admin/new"),
         uploadImageMW(objectRepository),
-        parseProductFromBodyMW(objectRepository),
         getProductMW(objectRepository),
+        parseProductFromBodyMW(objectRepository),
         updateProductMW(objectRepository),
         function(req , res){
             res.redirect("/admin");
