@@ -8,7 +8,7 @@ module.exports = function (objectrepository) {
         console.log("get username by sec token");
         var token = req.params.token;
         objectrepository.userModel.findOne({token : token}, function(err, user){
-            if(user.tokenExpires > Date.now()){
+            if(user.tokenExpires < Date.now()){
                 res.locals.parsedUser = user;
                 return next();
             } else{

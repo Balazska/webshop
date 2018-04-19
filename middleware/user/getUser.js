@@ -4,7 +4,6 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        console.log(res.locals.parsedUser);
         console.log(objectrepository.user);
         objectrepository.userModel.findOne({
             username : res.locals.parsedUser.username,
