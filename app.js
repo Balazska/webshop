@@ -17,7 +17,7 @@ var bcrypt = require('bcrypt')
 var LocalStrategy = require('passport-local').Strategy
 
 //email service
-var nodemailer = require('nodemailer');
+//var nodemailer = require('nodemailer');
 
 
 
