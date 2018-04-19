@@ -10,6 +10,7 @@ var sendOrderEmailMW = require('../middleware/user/sendOrderEmail');
 var parseUserFromBodyMW = require('../middleware/user/parseUserFromBody');
 var getCartMW = require('../middleware/item/getCart');
 var createCartMW = require('../middleware/item/createCart');
+var countTotalMW = require('../middleware/item/countTotal');
 var userModel = {};
 var productModel = require('../model/product');
 
@@ -60,12 +61,13 @@ module.exports = function (app) {
         writeToConsoleMW("/checkout"),
         createCartMW(),
         getCartMW(),
+        countTotalMW(),
         renderMW(objectRepository, 'checkout')
     );
     app.post('/checkout',
         writeToConsoleMW("/checkout"),
-        parseUserFromBodyMW(objectRepository),
         sendOrderEmailMW(objectRepository),
+        createCartMW(),
         function(req , res){
             res.redirect("/");
         }

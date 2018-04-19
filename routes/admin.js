@@ -60,7 +60,8 @@ module.exports = function (app) {
      */
     app.get('/admin/new',
         writeToConsoleMW("/admin/new"),
-        renderMW(objectRepository, 'admin-new')
+        getProductMW(objectRepository),
+        renderMW(objectRepository, 'admin-edit')
     );
     app.post('/admin/new',
         writeToConsoleMW("/admin/new"),
