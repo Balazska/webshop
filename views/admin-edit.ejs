@@ -67,6 +67,19 @@
                                 <label for="quantity">Quantity</label>
                                 <input name="quantity" type="number" class="form-control" id="quantity" placeholder="" value="<%= product.quantity %>">
                         </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select name="category" class="form-control" id="category">
+                                <option value="" ></option>
+                                <% categories.forEach(function(category){ %>
+                                    <% if(!!product.type && !!product.type._id && product.type._id.equals(category._id)){ %>
+                                        <option value="<%= category._id %>" selected><%= category.name %></option>
+                                    <% }else{ %>
+                                        <option value="<%= category._id %>" ><%= category.name %></option>
+                                    <% } %>
+                                <% }) %>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success btn-md">Submit</a>

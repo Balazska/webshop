@@ -3,6 +3,8 @@
  * @param objectrepository 
  */
 
+var mongoose = require('mongoose');
+
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
@@ -13,7 +15,7 @@ module.exports = function (objectrepository) {
         var product = res.locals.product;
         console.log(res.locals.product);
 
-        if(!body.name || !body.size || !body.description || !body.color || !body.price || !body.quantity){
+        if(!body.name || !body.size || !body.description || !body.color || !body.price || !body.quantity || !body.category){
             res.status(400).end("Some fields are missing");
         } else {
             product.name = body.name;
@@ -26,7 +28,8 @@ module.exports = function (objectrepository) {
             if(res.locals.imageUrl!=''){
                 product.image = res.locals.imageUrl ;
             }
-            
+            product.type = mongoose.Types.ObjectId(body.category);
+            console.log(product);
 
             return next();
         }

@@ -16,6 +16,9 @@ $(function(){
             description:{
                 required: true
             },
+            category: {
+                required: true
+            },
             quantity: {
                 required: true,
                 // Using the normalizer to trim the value of the element 
@@ -35,8 +38,7 @@ $(function(){
             }
         },
         messages:{
-            quantity: "Please fill this field",
-            size:'Please fill this field'
+            
         }
     });
 });

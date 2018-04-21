@@ -12,7 +12,7 @@ module.exports = function (objectrepository) {
 
         Product.findOne({
             _id:id
-        },function(err, product){
+        }).populate('type').exec(function(err, product){
             console.log(product);
             if(err){
                 //error!!!

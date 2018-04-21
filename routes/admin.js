@@ -7,14 +7,17 @@ var getAllProductsMW = require('../middleware/product/getProductList');
 var parseProductFromBodyMW = require('../middleware/product/parseProductFromBody');
 var writeToConsoleMW = require('../middleware/log/writeToConsole');
 var uploadImageMW = require('../middleware/product/uploadImage');
+var getCategoriesMW = require('../middleware/product/getCategory');
 var userModel = require('../model/user');
 var productModel = require('../model/product');
+var categoryModel = require('../model/category');
 var passport = require("passport");
 
 module.exports = function (app) {
     var objectRepository = {
         userModel: userModel,
-        productModel: productModel
+        productModel: productModel,
+        categoryModel: categoryModel
     };
 
     app.use('/admin',
@@ -40,6 +43,7 @@ module.exports = function (app) {
     //only for get requests
     app.get('/admin/edit/:id',
         writeToConsoleMW("/admin/edit"),
+        getCategoriesMW(objectRepository),
         getProductMW(objectRepository),
         renderMW(objectRepository,'admin-edit')
     );
@@ -60,6 +64,7 @@ module.exports = function (app) {
      */
     app.get('/admin/new',
         writeToConsoleMW("/admin/new"),
+        getCategoriesMW(objectRepository),
         getProductMW(objectRepository),
         renderMW(objectRepository, 'admin-edit')
     );

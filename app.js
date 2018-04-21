@@ -20,9 +20,11 @@ var LocalStrategy = require('passport-local').Strategy
 //var nodemailer = require('nodemailer');
 
 
+//store categories
+require('./data_loader/load_categories');
 
 //store dummy products:
-require('./data_loader/products')
+require('./data_loader/products');
 //store dummy user
 
 //create a password
