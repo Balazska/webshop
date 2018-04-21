@@ -1,13 +1,13 @@
 var Product = require("../model/product");
 
 var product = new Product({
-    name : 'Test',
-    description : 'Description of test',
+    name : 'Test Jewelry',
+    description : 'Description of test jewelry',
     price : 100,
-    color : ['red', 'yellow', 'blue'],
+    color : ['Green'],
     size: [10,20,30],
     quantity: 20,
-    image: '/images/products/book.jpeg'
+    image: ''
 });
 
 product.save(function(error){

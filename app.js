@@ -1,6 +1,8 @@
 //Start mongo
 //"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
 
+//LOGIN: user: admin , password: admin, email: admin@admin.admin
+
 var express = require("express"); 
 //create app
 var app = express();
