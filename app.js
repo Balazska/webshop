@@ -67,7 +67,7 @@ passport.deserializeUser(function (user, done) {
 app.use(session({
     secret: 'gwksesze8',
     cookie: {
-      maxAge: 60000
+      maxAge: 3600000
     },
     resave: true,
     saveUninitialized: false
@@ -99,6 +99,7 @@ app.use(formidable({
 
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/js', express.static(__dirname + '/node_modules/jquery-validation/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
 

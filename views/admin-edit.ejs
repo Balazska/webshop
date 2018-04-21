@@ -16,7 +16,7 @@
     <main role="main">
         <div class="container py-5">
             <h2><%= product.name %></h2>
-            <form method="POST" encType="multipart/form-data">
+            <form method="POST" encType="multipart/form-data" id="editForm">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="image">New Image</label>
-                                <input name="image" type="file" class="form-control-file" id="image">
+                                <input name="image" type="file" class="form-control-file" id="image" required="<%= product.name === undefined %>">
                         </div>
                         <div class="form-group">
                             <label for="size">Size</label>
@@ -75,6 +75,7 @@
     </main>
     <footer>
           <% include partials/footer %>
+          <script src="/js/admin-edit.js"></script>
     </footer>
    </body>
 </html>

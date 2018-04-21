@@ -5,6 +5,7 @@
     <% include partials/head %>
     <!-- Custom styles for this template -->
     <link href="/mycss/details.css" rel="stylesheet">
+    
   </head>
 
   <body>
@@ -14,7 +15,7 @@
     </header>
 
     <main role="main">
-        <form method="POST">
+        <form method="POST" id="detailsForm">
         <div class="container py-5">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
@@ -36,8 +37,8 @@
                       <tr>
                         <th scope="row">Size</th>
                         <td>
-                          <select name="size" class="custom-select">
-                            <option selected>Choose...</option>
+                          <select name="size" class="custom-select"  required>
+                            <option value="" disabled selected>Choose...</option>
                             <% product.size.forEach(function(size){ %>
                               <option><%= size %></option>
                             <% }) %>
@@ -63,7 +64,7 @@
                       <tr>
                         <th scope="row">Quantity</th>
                         <td>
-                          <input name="quantity" type="number" class="form-control" aria-describedby="" placeholder="">
+                          <input name="quantity" type="number" class="form-control" aria-describedby="" placeholder="" required>
                         </td>
                       </tr>
                     </tbody>
@@ -79,6 +80,7 @@
 
     <footer>
       <% include partials/footer %>
+      <script src="/js/details.js"></script>
     </footer>
    </body>
 </html>
