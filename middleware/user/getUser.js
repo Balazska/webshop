@@ -1,6 +1,7 @@
 /**
  * Get user by username
  */
+var message = require("../error");
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
@@ -14,6 +15,7 @@ module.exports = function (objectrepository) {
                 res.locals.user = user;
                 return next();
             } else {
+                req.session.sessionFlash = message.error("Wrong username or email");
                 res.redirect("/forgottenpassword")
             }
         });

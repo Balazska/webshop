@@ -24,11 +24,7 @@ module.exports = function (app) {
     app.post('/login',
         writeToConsoleMW('/login'),
         inverseAuthMW(objectRepository),
-        passport.authenticate('local', {
-            successRedirect: '/admin',
-            failureRedirect: '/login'
-        }),
-        renderMW(objectRepository, 'login')
+        checkUserLoginMW(objectRepository)
     );
 
     /**

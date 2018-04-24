@@ -10,7 +10,7 @@ module.exports = function (objectrepository) {
                 email: req.body.email
             };
             return next();
-        }
+        } 
         res.redirect("/forgottenpassword");
     };
 

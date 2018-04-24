@@ -2,7 +2,7 @@
  * Send a token email to the user
  */
 var transporter= require("../../middleware/generic/mail");
-
+var message = require("../error");
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
@@ -25,6 +25,7 @@ module.exports = function (objectrepository) {
             }
             console.log('Message sent: ' + info.response);
             console.log("Security token url:"+'http://'+req.headers.host+"/resettoken/"+res.locals.token);
+            req.session.sessionFlash = message.success("Email sent");
             next();
         });      
         

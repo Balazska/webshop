@@ -10,6 +10,8 @@ var app = express();
 var session=require('express-session');
 //create body parser
 var bodyParser = require('body-parser');
+//flash for display messages
+var flash = require('express-flash');
 
 //create a form parser with file upload feature
 var fileUpload = require('express-fileupload');
@@ -78,7 +80,7 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
   
 //set up body parser
 // for parsing application/json
