@@ -6,7 +6,7 @@ var product = new Product({
     price : 100,
     color : ['Green'],
     size: [10,20,30],
-    quantity: 20,
+    quantity: [20,10,10],
     image: ''
 });
 

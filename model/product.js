@@ -12,7 +12,7 @@ var productSchema = new Schema({
             ref: 'Category'
         },
         size: [Number],
-        quantity: Number,
+        quantity: [Number],
         image: String
 });
 

@@ -19,12 +19,11 @@ module.exports = function (objectrepository) {
             res.status(400).end("Some fields are missing");
         } else {
             product.name = body.name;
-            product.size = [];
-            product.size = product.size.concat(body.size);
+            product.size = body.size.split(',');
             product.description = body.description;
             product.color = body.color;
             product.price = body.price;
-            product.quantity = body.quantity;
+            product.quantity = body.quantity.split(',');
             if(res.locals.imageUrl!=''){
                 product.image = res.locals.imageUrl ;
             }

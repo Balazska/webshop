@@ -1,6 +1,9 @@
 //Start mongo
 //"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
 
+//TODO anomália van, mert több méretet is megadhatok de csak egy darabszámot. Szét kell szedni
+//hogy minden mérethez egy darabszám megadható legyen.
+
 //LOGIN: user: admin , password: admin, email: admin@admin.admin
 
 var express = require("express"); 

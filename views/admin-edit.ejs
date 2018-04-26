@@ -39,13 +39,18 @@
                         </div>
                         <div class="form-group">
                             <label for="size">Size</label>
-                            <select name="size" multiple class="form-control" id="size">
+                            <!--select name="size" multiple class="form-control" id="size">
                                 <option <%= product.size.includes(10) ? 'selected':'' %> >10</option>
                                 <option <%= product.size.includes(20) ? 'selected':'' %>>20</option>
                                 <option <%= product.size.includes(30) ? 'selected':'' %>>30</option>
                                 <option <%= product.size.includes(40) ? 'selected':'' %>>40</option>
                                 <option <%= product.size.includes(50) ? 'selected':'' %>>50</option>
-                            </select>
+                            </select-->
+                            <input name="size" type="text" class="form-control" id="size" value="<%= product.size %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input name="quantity" type="text" class="form-control" id="quantity" placeholder="" value="<%= product.quantity %>">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -62,10 +67,6 @@
                         <div class="form-group">
                                 <label for="price">Price</label>
                                 <input name="price" type="number" class="form-control" id="price" placeholder="" value="<%= product.price %>">
-                        </div>
-                        <div class="form-group">
-                                <label for="quantity">Quantity</label>
-                                <input name="quantity" type="number" class="form-control" id="quantity" placeholder="" value="<%= product.quantity %>">
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>

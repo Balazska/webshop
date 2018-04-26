@@ -42,9 +42,11 @@
                         <td>
                           <select name="size" class="custom-select"  required>
                             <option value="" disabled selected>Choose...</option>
-                            <% product.size.forEach(function(size){ %>
-                              <option><%= size %></option>
-                            <% }) %>
+                            <% for(var i=0; i<product.size.length; i++ ){ %>
+                              <option value="<%= i %>">
+                                  <%= product.size[i] %> (in stock: <%= product.quantity[i]%>)
+                              </option>
+                            <% } %>
                           </select>
                         </td>
                       </tr>
@@ -65,7 +67,7 @@
                         <td><%= product.price %>$</td>
                       </tr>
                       <tr>
-                        <th scope="row">Quantity (<%= product.quantity %>)</th>
+                        <th scope="row">Quantity</th>
                         <td>
                           <input name="quantity" type="number" class="form-control" aria-describedby="" placeholder="" required>
                         </td>
