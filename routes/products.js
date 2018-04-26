@@ -11,8 +11,13 @@ var parseUserFromBodyMW = require('../middleware/user/parseUserFromBody');
 var getCartMW = require('../middleware/item/getCart');
 var createCartMW = require('../middleware/item/createCart');
 var countTotalMW = require('../middleware/item/countTotal');
+var checkItemQuantityMW = require("../middleware/item/checkItemQuantity");
 var userModel = {};
 var productModel = require('../model/product');
+var getProductIdsInCartMW = require('../middleware/item/getProductIdsInCart');
+var getProductsInCartMW = require('../middleware/item/getProductsInCart');
+var setCartMW = require("../middleware/item/setCart");
+var decreaseProductsCountMW = require("../middleware/item/decreaseProductsCount");
 
 module.exports = function (app) {
     var objectRepository = {
@@ -66,11 +71,22 @@ module.exports = function (app) {
     );
     app.post('/checkout',
         writeToConsoleMW("/checkout"),
-        sendOrderEmailMW(objectRepository),
+        getCartMW(),
+        getProductIdsInCartMW(),
+        getProductsInCartMW(objectRepository),
+        checkItemQuantityMW(objectRepository),
+        //send order
+        decreaseProductsCountMW(objectRepository),
+        sendOrderEmailMW(objectRepository), //send email if OK and redirect
         createCartMW(),
-        function(req , res){
+        function(req,res,next){
             res.redirect("/");
         }
+    );
+    app.post('/checkout',
+        writeToConsoleMW("/checkout order quantity changed"),
+        setCartMW(),
+        renderMW(objectRepository,"checkout")
     );
 
     

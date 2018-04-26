@@ -1,0 +1,9 @@
+<% if(error != undefined && error.type == 'error'){ %>
+<div class="alert alert-danger ">
+    <strong>Error!</strong> <%= error.message %>
+</div>
+<% } else if(error != undefined && error.type == 'success'){ %>
+<div class="alert alert-success ">
+    <strong>SUCCESS!</strong> <%= error.message %>
+</div>
+<% } %>

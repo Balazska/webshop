@@ -8,7 +8,7 @@ module.exports = function (objectRepository) {
         console.log(req.body.email);
         req.session.cart =null;
         console.log("send email about the order");
-        return next();
+        return next();   
     };
 
 };
