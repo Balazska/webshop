@@ -1,5 +1,5 @@
 /**
- * Check if we have as many as the user want to buy 
+ * Check if we have as many as the user wants to buy 
  */
 module.exports = function (objectRepository) {
 
@@ -9,13 +9,17 @@ module.exports = function (objectRepository) {
         var quantityChanged = [];
         for(var i=0;i<items.length; i++){
             for(var j=0; j<products.length; j++){
+                var index = items[i].index;
                 if(items[i].product._id == products[j]._id){
-                    if( items[i].product.quantity > products[j].quantity){
-                        items[i].quantity = products[j].quantity;
+                    if( items[i].quantity > products[j].quantity[index]){
+                        items[i].quantity = products[j].quantity[index];
+                        items[i].sum = items[i].quantity * items[i].product.price;
                         quantityChanged.push(items[i]);
                     } else {
-                        products[j].quantity -= items[i].quantity;
+                        products[j].quantity.set(index,products[j].quantity[index]- items[i].quantity); 
+                        console.log(products[j].quantity);
                     }
+
                 }
             }
         }

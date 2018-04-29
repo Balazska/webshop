@@ -6,6 +6,8 @@
 
 //LOGIN: user: admin , password: admin, email: admin@admin.admin
 
+
+//MONGOOSE ha egy lista elemet update-elek akkor az set(index, new value) -val kell!!!!!!)
 var express = require("express"); 
 //create app
 var app = express();

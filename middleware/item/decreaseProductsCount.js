@@ -12,6 +12,8 @@ module.exports = function (objectRepository) {
 
         async.forEach(res.locals.products, function(product, callback){
             product.save(function(err, product){
+                console.log("--------------------");
+                console.log(product);
                 if(err){
                     console.log(err);
                     callback(err);

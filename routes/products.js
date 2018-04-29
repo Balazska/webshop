@@ -86,6 +86,7 @@ module.exports = function (app) {
     app.post('/checkout',
         writeToConsoleMW("/checkout order quantity changed"),
         setCartMW(),
+        countTotalMW(),
         renderMW(objectRepository,"checkout")
     );
 

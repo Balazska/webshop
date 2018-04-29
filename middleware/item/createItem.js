@@ -15,7 +15,7 @@ module.exports = function (objectRepository) {
         var product = res.locals.product;
         if(!req.body.size || !req.body.quantity){
             res.status(400).end('Bad Request, form fields are missing');
-        } else if(req.body.quantity >  product.size.length){
+        } else if(index >  product.size.length){
             req.session.sessionFlash = message.error("Wrong size value"); 
             res.redirect(req.get("referer"));
         } else if(product.quantity[index] < req.body.quantity){
@@ -28,6 +28,7 @@ module.exports = function (objectRepository) {
                 size: product.size[index],
                 quantity: req.body.quantity,
                 sum: req.body.quantity*res.locals.product.price,
+                index: index
             }
             res.locals.item = item;
             return next();
