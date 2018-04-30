@@ -21,6 +21,7 @@
                     <th scope="col">Product Name</th>
                     <th scope="col">Image</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Color</th>
                     <th scope="col">Size</th>
                     <th scope="col">Quantity</th>
@@ -34,6 +35,7 @@
                     <th scope="row"><%= product.name %></th>
                     <td><img class="img-fluid mini-image" src="<%= product.image %>"></td>
                     <td><%= product.description %></td>
+                    <td><%= product.type.name %></td>
                     <td><%= product.color %></td>
                     <td><%= product.size %></td>
                     <td><%= product.quantity %></td>
