@@ -15,10 +15,7 @@ module.exports = function (objectrepository) {
         }).populate('type').exec(function(err, product){
             console.log(product);
             if(err){
-                //error!!!
-                //res.locals.product = new Product();
-                //return next();
-                res.status(500).send("server delete error: "+err);
+                res.status(500).send("server db error: "+err);
             } else {
                 if(product == null){
                     res.locals.product = new Product({});

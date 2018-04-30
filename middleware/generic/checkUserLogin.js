@@ -10,7 +10,7 @@ module.exports = function (objectRepository) {
 
     return function (req, res, next) {
         passport.authenticate('local', function(err, user, info) {
-            console.log("autenticate");
+            console.log("authenticate");
             if (err) { 
                 req.session.sessionFlash = message.error("Error during login");
                 return res.redirect('/login'); 

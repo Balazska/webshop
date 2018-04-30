@@ -1,3 +1,7 @@
+/** 
+ * insert a dummy product to the mongo db,if there aren't any products
+*/
+
 var Product = require("../model/product");
 
 var product = new Product({
@@ -10,6 +14,18 @@ var product = new Product({
     image: ''
 });
 
-product.save(function(error){
-    console.log(error);
+Product.find(function(err,products){
+    if(err){
+        console.log("data_loader/products: error during find products: "+err);
+    } else {
+        if(products.length == 0){
+            product.save(function(err){
+                if(err){
+                    console.log("data_loader/products: error during save test product: "+err);
+                } else {
+                    console.log("data_loader/products: test product saved.");
+                }
+            });
+        }
+    }
 });

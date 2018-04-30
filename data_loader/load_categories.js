@@ -15,8 +15,11 @@ Category.find(function(err, categories){
         categories.push(casual);
         categories.push(wedding);
         Category.create(categories, function(err){
-            console.log("success");
-            
+            if(err){
+                console.log("load_categories.js: error during save: "+err);
+            } else {
+                console.log("load_categories.js: save success: ");
+            }
         });
     }
 });

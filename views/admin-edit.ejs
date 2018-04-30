@@ -15,6 +15,7 @@
 
     <main role="main">
         <div class="container py-5">
+            <%- include partials/message error %>
             <h2><%= product.name %></h2>
             <form method="POST" encType="multipart/form-data" id="editForm">
                 <div class="row">

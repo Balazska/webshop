@@ -21,9 +21,9 @@ var flash = require('express-flash');
 //create a form parser with file upload feature
 var fileUpload = require('express-fileupload');
 //these are for the authentication
-var passport = require('passport')
 var bcrypt = require('bcrypt')
-var LocalStrategy = require('passport-local').Strategy
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
 
 //email service
 //var nodemailer = require('nodemailer');
@@ -39,10 +39,12 @@ require('./data_loader/products');
 //create a password
 require('./data_loader/add_admin');
 var User = require("./model/user");
+
+//----------SETUP PASSPORT---------------
 //set up passport local strategy
 passport.use(new LocalStrategy(
   (username, password, done) => {
-    console.log(username + ' ' + password);
+      console.log(username + ' ' + password);
       // find the user
       User.findOne({ username : username}, function(err, admin){
           
@@ -61,10 +63,9 @@ passport.use(new LocalStrategy(
               }
               return done(null, admin)
             })
-      })
+      });
      })
- )
-
+ );
 passport.serializeUser(function (user, done) {
   console.log(user);
   done(null, user);
@@ -73,6 +74,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   done(null, user);
 })
+//---------END SETUP PASSPORT------------
 
 //set the session options
 app.use(session({
@@ -133,5 +135,5 @@ require('./routes/products')(app);
 app.use(express.static('public'));
 
 app.listen(3000,function(){
-    console.log('server listen on port 3000');
+    console.log('app.js: server listen on port 3000');
 });
