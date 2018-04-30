@@ -7,7 +7,6 @@ module.exports = function(objectrepository, viewName){
         console.log("render a page");
         res.locals.error = req.session.sessionFlash;
         delete req.session.sessionFlash;
-        console.log(res.locals.error);
         res.render(viewName, res.locals);
     }
 }

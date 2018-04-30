@@ -19,8 +19,6 @@ module.exports = function (objectrepository) {
             } else {
                 if(product == null){
                     res.locals.product = new Product({});
-                    console.log("res product:----------------");
-                    console.log(res.locals.product);
                 } else {
                     res.locals.product = product;
                 }

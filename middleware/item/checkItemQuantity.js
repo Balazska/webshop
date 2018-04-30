@@ -17,7 +17,6 @@ module.exports = function (objectRepository) {
                         quantityChanged.push(items[i]);
                     } else {
                         products[j].quantity.set(index,products[j].quantity[index]- items[i].quantity); 
-                        console.log(products[j].quantity);
                     }
 
                 }

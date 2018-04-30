@@ -12,7 +12,6 @@ module.exports = function (objectRepository) {
             ids.push(item.product._id);
         });
         res.locals.ids = ids;
-        console.log(ids);
 
         return next();
     };

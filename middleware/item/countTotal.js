@@ -10,7 +10,6 @@ module.exports = function (objectRepository) {
            req.session.cart.items.forEach(item => {
                req.session.cart.sum += item.sum;
            }); 
-           console.log(req.session.cart.sum);
         } 
         return next();
     };

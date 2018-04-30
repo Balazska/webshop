@@ -21,6 +21,9 @@ module.exports = function (objectRepository) {
         } else if(product.quantity[index] < req.body.quantity){
             req.session.sessionFlash = message.error("We don't have so many product"); 
             res.redirect(req.get("referer"));
+        } else if(req.body.quantity < 1 ){
+                req.session.sessionFlash = message.error("Quantity must be greater than zero."); 
+                res.redirect(req.get("referer"));
         } else if(res.locals.product){
             var item = {
                 product: res.locals.product,

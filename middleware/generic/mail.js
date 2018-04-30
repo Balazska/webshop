@@ -33,12 +33,9 @@ this module will create the mail transporter
         send: (mail, callback) => {
             let input = mail.message.createReadStream();
             console.log("---------EMAIL-----------");
-            input.pipe(process.stdout);
-            
-            input.on('end', function () {
-                console.log("---------/EMAIL-----------");
-                callback(null, true);
-            });
+            console.log(mail.message.content);
+            console.log("---------/EMAIL-----------");
+            callback(null, true);
         }
     };
     

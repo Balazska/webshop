@@ -11,9 +11,10 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin" method="POST">
+    <form id="resettokenForm" class="form-signin" method="POST">
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Set new password</h1>
+      <%- include partials/message error %>
       <label for="password" class="sr-only">Password</label>
       <input name="password" type="password" id="password" class="form-control" placeholder="Password" required autofocus>
       <label for="passwordAgain" class="sr-only">Password again</label>
@@ -25,6 +26,7 @@
 
     <footer>
       <% include partials/footer %>
+      <script src="/js/resettoken.js"></script>
     </footer>
   </body>
 </html>

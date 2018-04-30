@@ -42,11 +42,12 @@
                         <td>
                           <select name="size" class="custom-select"  required>
                             <option value="" disabled selected>Choose...</option>
-                            <% for(var i=0; i<product.size.length; i++ ){ %>
+                            <% for(var i=0; i<product.size.length; i++ ){ 
+                              if(product.quantity[i] > 0 ){ %>
                               <option value="<%= i %>">
                                   <%= product.size[i] %> (in stock: <%= product.quantity[i]%>)
                               </option>
-                            <% } %>
+                            <% }} %>
                           </select>
                         </td>
                       </tr>

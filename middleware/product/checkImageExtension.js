@@ -13,20 +13,16 @@ module.exports = function (objectrepository) {
         if(req.files && req.files.image){
             var image = req.files.image;
             if(image.name.indexOf("/")>-1 || image.name.indexOf("\\")>-1 ){
-                //todo error
                 error = true;
             }
             var parts = image.name.split(".");
             if(parts.length != 2) {
-                //todo error
                 error = true;
             } else {
                 if(parts[1].indexOf("png") != -1 || parts[1].indexOf("jpg") != -1 || parts[1].indexOf("jpeg") != -1 ){
-                    //TODO ok
                     res.locals.imageFile = image;
                     return next();
                 } else {
-                    //TODO error
                     error = true;
                 }
             }

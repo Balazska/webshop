@@ -10,7 +10,6 @@ module.exports = function (objectrepository) {
         console.log(Date.now());
         user.save(function(err, user){
             console.log('updated');
-            console.log(user);
             res.locals.user = user;
             return next();
         })

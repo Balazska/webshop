@@ -2,6 +2,7 @@
  * Set new password for the given user
  */
 var bcrypt = require("bcrypt");
+var message = require("../error");
 
 module.exports = function (objectrepository) {
 
@@ -13,6 +14,10 @@ module.exports = function (objectrepository) {
                     return next();
                 });
               });   
+        } else if(req.body.password != req.body.passwordAgain){
+            req.session.sessionFlash = message.error("The password and the repeat don't match");
+            var backURL = req.header('Referer') || '/admin';
+            res.redirect(backURL);
         }
         
     };

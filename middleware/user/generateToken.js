@@ -9,7 +9,6 @@ module.exports = function (objectrepository) {
         crypto.randomBytes(20, function(err, buf) {
             var token = buf.toString('hex');
             res.locals.token = token;
-            console.log(token);
             return next();
           });
         
