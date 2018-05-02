@@ -23,8 +23,8 @@
                     <th scope="col">Color</th>
                     <th scope="col">Size</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Price (HUF)</th>
+                    <th scope="col">Total (HUF)</th>
                     <th scope="col">Remove</th>
                   </tr>
                 </thead>
@@ -43,7 +43,7 @@
                   <% }) %>
                 </tbody>
               </table>  
-              <h4>Total: <%= cart.sum %>$</h4>
+              <h4>Total: <%= cart.sum %> HUF</h4>
               <form id=checkoutForm"" method="POST">  
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>

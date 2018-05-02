@@ -13,11 +13,11 @@ module.exports = function (objectRepository) {
         var email = "Your order: \nID\tName\tSize\tColor\tQuantity\tSum\n";
         res.locals.cart.items.forEach(item => {
             var line = item.product._id+"\t"+item.product.name+"\t"
-                    +item.size+"\t"+item.color+"\t"+item.quantity+"\t"+item.sum+"\n";
+                    +item.size+"\t"+item.color+"\t"+item.quantity+"\t"+item.sum+" HUF"+"\n";
             email+=line;
             
         });
-        email+="\n\nTotal: "+res.locals.cart.sum;
+        email+="\n\nTotal: "+res.locals.cart.sum+ " HUF";
 
         var mailOptions = {
             from: 'b@b.b', // sender address
