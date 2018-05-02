@@ -19,7 +19,8 @@ module.exports = function (objectrepository) {
             if(parts.length != 2) {
                 error = true;
             } else {
-                if(parts[1].indexOf("png") != -1 || parts[1].indexOf("jpg") != -1 || parts[1].indexOf("jpeg") != -1 ){
+                if(parts[1].indexOf("png") != -1 || parts[1].indexOf("jpg") != -1 || parts[1].indexOf("jpeg") != -1 || 
+                parts[1].indexOf("PNG") != -1 || parts[1].indexOf("JPG") != -1 || parts[1].indexOf("JPEG") != -1){
                     res.locals.imageFile = image;
                     return next();
                 } else {

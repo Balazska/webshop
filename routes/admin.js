@@ -72,6 +72,7 @@ module.exports = function (app) {
     );
     app.post('/admin/new',
         writeToConsoleMW("/admin/new"),
+        checkImageExtensionMW(objectRepository),
         uploadImageMW(objectRepository),
         getProductMW(objectRepository),
         parseProductFromBodyMW(objectRepository),
