@@ -1,6 +1,8 @@
 //Start mongo
 //"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
 
+//NEHANY INFO A README.md-ben
+
 //LOGIN: user: admin , password: admin, email: admin@admin.admin
 
 
