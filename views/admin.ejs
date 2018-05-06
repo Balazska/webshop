@@ -35,7 +35,11 @@
                     <th scope="row"><%= product.name %></th>
                     <td><img class="img-fluid mini-image" src="<%= product.image %>"></td>
                     <td><%= product.description %></td>
-                    <td><%= product.type.name %></td>
+                    <td>
+                      <% if(product.type){ %>
+                        <%= product.type.name %>
+                      <% } %>
+                    </td>
                     <td><%= product.color %></td>
                     <td><%= product.size %></td>
                     <td><%= product.quantity %></td>
