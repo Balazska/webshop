@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "mongoose": "^5.0.14",
     "nodemailer": "^4.6.4",
     "nodemon": "^1.17.3",
+    "nyc": "^11.8.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "smtp-server": "^3.4.2"

@@ -117,4 +117,44 @@ describe('checkImageExtension middleware ', function(){
             done();
         });
     });
+
+    it('if extension is .js', function(done){
+        var req = {
+            files:{
+                image:{
+                    name:'image.js'
+                }
+            },
+            header: function(string){
+                return 'hello'
+            },
+            session:{}
+        };
+        var res = {
+            locals:{
+                imageFile:{}
+            },
+            redirect:function(url){
+                expect(url).to.eql('hello');
+                expect(req.session.sessionFlash).to.eql({
+                    type: 'error',
+                    message: "Wrong image type"
+                });
+                done();
+            }
+        }
+        var objectRepository = {};
+        var message = {
+            error: function(string){
+                return {
+                    type: 'error',
+                    message: string
+                }
+            }
+        }
+        checkImageExtensionMW(objectRepository)(req,res,function(err){
+            expect(true).to.eql(false);
+            done();
+        });
+    });
 });

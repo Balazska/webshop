@@ -9,3 +9,5 @@ Anyukám megkért, hogy készítsek egy webshopot az ékszereknek amiket készí
 ## Email: 
 az emailt konzolra írja ki a szerver, de a mail.js modul elő van készítve 
 emailek küldésére gmail szolgáltatás segítségével.
+## Testing:
+'npm test' elvileg mukodik
